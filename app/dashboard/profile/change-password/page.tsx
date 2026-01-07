@@ -1,3 +1,3 @@
 export default function ChangePasswordPage() {
-  return <div>Change Password page update</div>;
+  return <div>Change Password page update --zin </div>;
 }
