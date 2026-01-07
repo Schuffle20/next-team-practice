@@ -1,3 +1,6 @@
 export default function ProfilePage() {
-  return <div> Profile page update again --zinmar</div>;
+  return <div> 
+    <h1>Profile page update again --zinmar</h1>
+    <p>this is profile page</p>
+  </div>;
 }

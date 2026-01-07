@@ -1,5 +1,8 @@
 export default function ChangePasswordPage() {
 
-  return <div>Change Password page update --zin Password again update</div>;
+  return <div>
+    <h1>Change Password page update --zin Password </h1>
+    <p>This is Change Password Page</p>
+  </div>;
 
 }

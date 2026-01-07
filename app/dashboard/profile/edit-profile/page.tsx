@@ -1,3 +1,6 @@
 export default function EditProfilePage() {
-  return <div> Edit Profile page update --zinmar edit again </div>;
+  return <div> 
+    <h1>Edit Profile page update --zinmar edit</h1> 
+    <p>This is edit profile </p>
+     </div>;
 }
