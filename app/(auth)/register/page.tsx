@@ -44,7 +44,7 @@ const registerSchema = z
       .max(100, "Email must not exceed 100 characters"),
     phone: z
       .string()
-      .min(1, "Phone number is required")
+      .min(7, "Phone number is required")
       .regex(
         /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/,
         "Please enter a valid phone number"

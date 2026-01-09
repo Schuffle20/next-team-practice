@@ -113,9 +113,7 @@ export default function LoginPage() {
                   className={errors.password ? "border-red-500" : ""}
                 />
                 {errors.password && (
-                  <p className="text-sm text-red-500">
-                    {errors.password.message}
-                  </p>
+                  <p className="text-sm text-red-500">{errors.password.message}</p>
                 )}
               </div>
               <Button
@@ -128,6 +126,7 @@ export default function LoginPage() {
             </form>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
+
             <div className="text-sm text-center text-muted-foreground">
               Don&apos;t have an account?{" "}
               <Link
