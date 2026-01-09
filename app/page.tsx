@@ -1,5 +1,4 @@
 import {
-  LandingNav,
   LandingHero,
   LandingFeatures,
   LandingBenefits,
@@ -10,7 +9,6 @@ import {
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
-      <LandingNav />
       <LandingHero />
       <LandingFeatures />
       <LandingBenefits />

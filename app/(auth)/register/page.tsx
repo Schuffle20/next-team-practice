@@ -5,7 +5,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -73,7 +76,16 @@ const registerSchema = z
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
-export default function RegisterPage() {
+const planNames: Record<string, string> = {
+  basic: "Basic",
+  pro: "Pro",
+  premium: "Premium",
+};
+
+function RegisterForm() {
+  const searchParams = useSearchParams();
+  const selectedPlan = searchParams.get("plan");
+
   const {
     register,
     handleSubmit,
@@ -95,6 +107,7 @@ export default function RegisterPage() {
   const onSubmit = async (data: RegisterFormData) => {
     // Handle form submission
     console.log("Form data:", data);
+    console.log("Selected plan:", selectedPlan);
     // Add your API call here
   };
   return (
@@ -122,6 +135,13 @@ export default function RegisterPage() {
             <CardDescription>
               Enter your information below to get started
             </CardDescription>
+            {selectedPlan && (
+              <div className="mt-4">
+                <Badge variant="secondary" className="text-sm">
+                  Selected Plan: {planNames[selectedPlan] || selectedPlan}
+                </Badge>
+              </div>
+            )}
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -288,5 +308,38 @@ export default function RegisterPage() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex">
+          <div className="hidden md:flex md:w-1/2 bg-cyan-50 items-center justify-center p-4">
+            <div className="relative w-full max-w-md h-auto">
+              <Image
+                src="/login_register_new.png"
+                alt="Register visual"
+                width={500}
+                height={600}
+                className="object-contain w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 flex items-center justify-center bg-slate-50/50 p-4">
+            <div className="w-full max-w-md">
+              <div className="animate-pulse space-y-4">
+                <div className="h-8 bg-gray-200 rounded w-3/4"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <RegisterForm />
+    </Suspense>
   );
 }

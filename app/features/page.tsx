@@ -1,128 +1,213 @@
-"use client";
-
-import { useState } from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { HugeiconsIcon } from "@hugeicons/react";
 import {
+  FeatureCategory,
+  PageHeader,
+  CTASection,
+} from "@/components/features";
+import {
+  ShoppingCart01Icon,
+  CreditCardIcon,
+  PieChartSquareIcon,
+  UserGroupIcon,
+  ShieldCheck,
+  ZapIcon,
   Store01Icon,
-  Coffee01Icon,
-  ShoppingBag01Icon,
-  ArrowRight01Icon,
-  CheckmarkCircle01Icon,
+  File01Icon,
+  SearchIcon,
+  CloudUploadIcon,
+  NotificationIcon,
+  SettingsIcon,
+  FileIcon,
+  ComputerIcon,
+  DownloadIcon,
 } from "@hugeicons/core-free-icons";
 
-const businessTypes = [
-  { id: "retail", title: "Retail", icon: ShoppingBag01Icon, desc: "Clothing, electronics, or general goods." },
-  { id: "fnb", title: "Food & Beverage", icon: Coffee01Icon, desc: "Restaurants, cafes, or food trucks." },
-  { id: "service", title: "Services", icon: Store01Icon, desc: "Salons, repairs, or professional services." },
+const featureCategories = [
+  {
+    title: "Sales & Checkout",
+    features: [
+      {
+        icon: ShoppingCart01Icon,
+        title: "Fast Checkout",
+        description: "Streamlined checkout process with support for multiple payment methods and quick item scanning.",
+      },
+      {
+        icon: File01Icon,
+        title: "Digital Receipts",
+        description: "Send receipts via email or SMS. Print receipts on any compatible printer or go completely paperless.",
+      },
+      {
+        icon: SearchIcon,
+        title: "Barcode Scanning",
+        description: "Quick product lookup with barcode scanning. Support for all major barcode formats including QR codes.",
+      },
+      {
+        icon: CreditCardIcon,
+        title: "Multiple Payment Methods",
+        description: "Accept cash, cards, mobile payments, and digital wallets. All transactions are secure and PCI-compliant.",
+      },
+    ],
+  },
+  {
+    title: "Inventory Management",
+    features: [
+      {
+        icon: Store01Icon,
+        title: "Real-Time Inventory",
+        description: "Track stock levels in real-time across all locations. Get instant alerts when items are running low.",
+      },
+      {
+        icon: FileIcon,
+        title: "Product Management",
+        description: "Organize products with categories, variants, and custom attributes. Bulk import and export capabilities.",
+      },
+      {
+        icon: NotificationIcon,
+        title: "Low Stock Alerts",
+        description: "Automated notifications when inventory falls below your set thresholds. Never run out of stock again.",
+      },
+      {
+        icon: CloudUploadIcon,
+        title: "Multi-Location Support",
+        description: "Manage inventory across multiple stores or warehouses. Transfer stock between locations seamlessly.",
+      },
+    ],
+  },
+  {
+    title: "Analytics & Reports",
+    features: [
+      {
+        icon: PieChartSquareIcon,
+        title: "Sales Analytics",
+        description: "Comprehensive sales reports with visual charts. Track revenue, profit margins, and sales trends over time.",
+      },
+      {
+        icon: UserGroupIcon,
+        title: "Customer Insights",
+        description: "Understand your customers better with purchase history, preferences, and behavior analytics.",
+      },
+      {
+        icon: FileIcon,
+        title: "Custom Reports",
+        description: "Generate custom reports for any metric. Export to PDF, Excel, or CSV for further analysis.",
+      },
+      {
+        icon: ZapIcon,
+        title: "Real-Time Dashboard",
+        description: "Monitor your business performance in real-time with an intuitive dashboard showing key metrics.",
+      },
+    ],
+  },
+  {
+    title: "Customer Management",
+    features: [
+      {
+        icon: UserGroupIcon,
+        title: "Customer Database",
+        description: "Maintain a complete customer database with contact information, purchase history, and preferences.",
+      },
+      {
+        icon: CreditCardIcon,
+        title: "Loyalty Programs",
+        description: "Create and manage loyalty programs to reward repeat customers and increase retention.",
+      },
+      {
+        icon: NotificationIcon,
+        title: "Marketing Tools",
+        description: "Send targeted promotions, discounts, and announcements to your customer base via email or SMS.",
+      },
+      {
+        icon: ShieldCheck,
+        title: "Customer Support",
+        description: "Track customer inquiries and support tickets. Maintain detailed notes for each customer interaction.",
+      },
+    ],
+  },
+  {
+    title: "Security & Compliance",
+    features: [
+      {
+        icon: ShieldCheck,
+        title: "PCI Compliance",
+        description: "Fully PCI-DSS compliant payment processing. All card data is encrypted and securely handled.",
+      },
+      {
+        icon: SettingsIcon,
+        title: "User Permissions",
+        description: "Granular access control with role-based permissions. Control what each staff member can access.",
+      },
+      {
+        icon: FileIcon,
+        title: "Audit Trails",
+        description: "Complete audit logs for all transactions and system changes. Track every action for compliance.",
+      },
+      {
+        icon: CloudUploadIcon,
+        title: "Data Backup",
+        description: "Automatic daily backups to secure cloud storage. Restore your data anytime with point-in-time recovery.",
+      },
+    ],
+  },
+  {
+    title: "Hardware & Integration",
+    features: [
+      {
+        icon: DownloadIcon,
+        title: "Receipt Printers",
+        description: "Compatible with all major receipt printer brands. Support for thermal and impact printers.",
+      },
+      {
+        icon: SearchIcon,
+        title: "Barcode Scanners",
+        description: "Works with USB, Bluetooth, and wireless barcode scanners. Quick setup and configuration.",
+      },
+      {
+        icon: ComputerIcon,
+        title: "Mobile POS",
+        description: "Run your POS on tablets, smartphones, or laptops. Works on iOS, Android, and Windows devices.",
+      },
+      {
+        icon: CloudUploadIcon,
+        title: "Cloud Sync",
+        description: "All your data syncs automatically across all devices. Access your POS from anywhere, anytime.",
+      },
+    ],
+  },
 ];
 
-export default function GetStartedPage() {
-  const [step, setStep] = useState(1);
-  const [selectedType, setSelectedType] = useState("");
-
+export default function FeaturesPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-slate-50/50 p-6">
-      <div className="max-w-2xl w-full space-y-8">
-        {/* Progress Indicator */}
-        <div className="flex justify-between mb-8 max-w-xs mx-auto">
-          {[1, 2, 3].map((s) => (
-            <div key={s} className="flex items-center">
-              <div className={`h-8 w-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                step >= s ? "bg-cyan-600 text-white" : "bg-gray-200 text-gray-500"
-              }`}>
-                {step > s ? <HugeiconsIcon icon={CheckmarkCircle01Icon} className="h-5 w-5" /> : s}
-              </div>
-              {s < 3 && <div className={`h-1 w-12 mx-2 ${step > s ? "bg-cyan-600" : "bg-gray-200"}`} />}
-            </div>
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
+      <PageHeader
+        badge="Features"
+        title="Powerful Features for Your Business"
+        description="Everything you need to run your business efficiently. From sales and inventory to analytics and customer management."
+      />
+
+      {/* Features Grid */}
+      <div className="px-4 sm:px-6 lg:px-8 pb-24">
+        <div className="max-w-7xl mx-auto">
+          {featureCategories.map((category, categoryIndex) => (
+            <FeatureCategory
+              key={categoryIndex}
+              title={category.title}
+              features={category.features}
+            />
           ))}
         </div>
-
-        {step === 1 && (
-          <Card className="border-t-4 border-t-cyan-600 shadow-xl animate-in fade-in zoom-in duration-300">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl font-bold">What’s your business type?</CardTitle>
-              <CardDescription>We’ll customize your POS experience based on your industry.</CardDescription>
-            </CardHeader>
-            <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {businessTypes.map((type) => (
-                <button
-                  key={type.id}
-                  onClick={() => setSelectedType(type.id)}
-                  className={`cursor-pointer flex flex-col items-center p-6 rounded-xl border-2 transition-all ${
-                    selectedType === type.id 
-                      ? "border-cyan-600 bg-cyan-50/50 shadow-md" 
-                      : "border-gray-100 hover:border-cyan-200 hover:bg-slate-50"
-                  }`}
-                >
-                  <HugeiconsIcon icon={type.icon} className={`h-10 w-10 mb-4 ${selectedType === type.id ? "text-cyan-600" : "text-gray-400"}`} />
-                  <span className="font-semibold text-gray-900">{type.title}</span>
-                  <p className="text-xs text-center text-gray-500 mt-2">{type.desc}</p>
-                </button>
-              ))}
-            </CardContent>
-            <CardFooter>
-              <Button 
-                disabled={!selectedType} 
-                onClick={() => setStep(2)} 
-                className="w-full bg-cyan-600 hover:bg-cyan-700 py-6 text-lg"
-              >
-                Continue <HugeiconsIcon icon={ArrowRight01Icon} className="ml-2 h-5 w-5" />
-              </Button>
-            </CardFooter>
-          </Card>
-        )}
-
-        {step === 2 && (
-          <Card className="border-t-4 border-t-cyan-600 shadow-xl animate-in slide-in-from-right duration-300">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl font-bold">Hardware & Setup</CardTitle>
-              <CardDescription>How would you like to run your POS?</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center space-x-4 p-4 rounded-lg border border-gray-100 bg-white">
-                <div className="bg-cyan-100 p-3 rounded-full"><HugeiconsIcon icon={Store01Icon} className="text-cyan-600" /></div>
-                <div className="flex-1">
-                  <p className="font-medium">Software Only</p>
-                  <p className="text-xs text-gray-500">Run on your existing iPad, Android, or Laptop.</p>
-                </div>
-                <Button variant="outline" size="sm" onClick={() => setStep(3)}>Select</Button>
-              </div>
-              <div className="flex items-center space-x-4 p-4 rounded-lg border border-gray-100 bg-white">
-                <div className="bg-cyan-100 p-3 rounded-full"><HugeiconsIcon icon={ShoppingBag01Icon} className="text-cyan-600" /></div>
-                <div className="flex-1">
-                  <p className="font-medium">All-in-One Terminal</p>
-                  <p className="text-xs text-gray-500">We ship you a professional terminal + printer.</p>
-                </div>
-                <Button variant="outline" size="sm" onClick={() => setStep(3)}>Select</Button>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button variant="ghost" onClick={() => setStep(1)} className="w-full text-gray-500">Go Back</Button>
-            </CardFooter>
-          </Card>
-        )}
-
-        {step === 3 && (
-          <div className="text-center space-y-6 animate-in fade-in zoom-in duration-500">
-             <div className="h-20 w-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <HugeiconsIcon icon={CheckmarkCircle01Icon} className="h-12 w-12" />
-             </div>
-             <h2 className="text-3xl font-bold">You&apos;re almost there!</h2>
-             <p className="text-gray-500 max-w-sm mx-auto">Create your admin account to access your new {selectedType} dashboard.</p>
-             <div className="flex flex-col gap-3">
-                <Link href="/register">
-                  <Button className="w-full bg-cyan-600 hover:bg-cyan-700 py-6 text-lg">Create Account</Button>
-                </Link>
-                <Link href="/login">
-                  <Button variant="ghost" className="w-full">Already have an account? Sign in</Button>
-                </Link>
-             </div>
-          </div>
-        )}
       </div>
-    </div>
+
+      <CTASection
+        title="Ready to Get Started?"
+        description="Experience all these features and more. Start your free trial today."
+        primaryButton={{
+          text: "Start Free Trial",
+          href: "/getstarted",
+        }}
+        secondaryButton={{
+          text: "View Pricing",
+          href: "/pricing",
+        }}
+      />
+    </main>
   );
 }

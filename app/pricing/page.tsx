@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Tick02Icon } from "@hugeicons/core-free-icons";
+import { Tick02Icon, CheckmarkCircle01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 const PricingTier = ({
@@ -11,6 +15,9 @@ const PricingTier = ({
   features,
   isPopular,
   buttonText = "Get Started",
+  isSelected = false,
+  hasAnySelection = false,
+  onClick,
 }: {
   name: string;
   price: string;
@@ -19,15 +26,21 @@ const PricingTier = ({
   features: string[];
   isPopular?: boolean;
   buttonText?: string;
+  isSelected?: boolean;
+  hasAnySelection?: boolean;
+  onClick?: () => void;
 }) => (
   <Card
-    className={`relative flex flex-col p-8 ${
-      isPopular
-        ? "border-cyan-500 border-2 overflow-visible bg-gradient-to-br from-cyan-50 to-white shadow-xl shadow-cyan-500/20"
-        : "bg-white border border-gray-200"
+    className={`relative flex flex-col p-8 cursor-pointer transition-all ${
+      isSelected
+        ? "border-cyan-600 border-2 overflow-visible bg-gradient-to-br from-cyan-50 to-white shadow-xl shadow-cyan-500/20 ring-2 ring-cyan-600 ring-offset-2"
+        : isPopular && !hasAnySelection
+        ? "border-cyan-500 border-2 overflow-visible bg-gradient-to-br from-cyan-50 to-white shadow-xl shadow-cyan-500/20 hover:shadow-2xl"
+        : "bg-white border border-gray-200 hover:border-cyan-300 hover:shadow-lg"
     }`}
+    onClick={onClick}
   >
-    {isPopular && (
+    {isPopular && !isSelected && !hasAnySelection && (
       <div className="absolute -top-3 left-1/2 -translate-x-1/2">
         <span className="bg-cyan-500 text-white px-4 py-3 rounded-full text-sm font-semibold shadow-md">
           Recommended
@@ -35,7 +48,16 @@ const PricingTier = ({
       </div>
     )}
 
-    <div className={isPopular ? "pt-4" : ""}>
+    {isSelected && (
+      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+        <span className="bg-cyan-600 text-white px-4 py-3 rounded-full text-sm font-semibold shadow-md flex items-center gap-2">
+          <HugeiconsIcon icon={CheckmarkCircle01Icon} className="h-4 w-4" />
+          Selected
+        </span>
+      </div>
+    )}
+
+    <div className={isSelected || (isPopular && !hasAnySelection) ? "pt-4" : ""}>
       <h3 className="text-xl font-semibold text-gray-900 mb-2">{name}</h3>
       <p className="text-gray-600 text-sm mb-6 leading-relaxed">
         {description}
@@ -48,12 +70,16 @@ const PricingTier = ({
 
       <Button
         className={`w-full mb-8 font-semibold ${
-          isPopular
+          isSelected || (isPopular && !hasAnySelection)
             ? "bg-cyan-600 text-white hover:bg-cyan-700"
             : "bg-gray-900 text-white hover:bg-gray-800 border border-gray-900"
         }`}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick?.();
+        }}
       >
-        {buttonText}
+        {isSelected ? "Selected" : buttonText}
       </Button>
 
       <div className="space-y-4">
@@ -73,6 +99,77 @@ const PricingTier = ({
 );
 
 export default function PricingPage() {
+  const router = useRouter();
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+
+  const plans = [
+    {
+      id: "basic",
+      name: "Basic",
+      price: "0",
+      currency: "MMK",
+      description: "Perfect for getting started with essential features",
+      features: [
+        "Up to 5 projects",
+        "Core features",
+        "Basic analytics",
+        "Email support",
+        "1GB storage",
+        "Community access",
+      ],
+      buttonText: "Start Free",
+      isPopular: false,
+    },
+    {
+      id: "pro",
+      name: "Pro",
+      price: "100,000",
+      currency: "MMK",
+      description: "Ideal for growing teams and businesses",
+      features: [
+        "Unlimited projects",
+        "Advanced features",
+        "Real-time analytics",
+        "Priority email support",
+        "100GB storage",
+        "API access",
+        "Team collaboration",
+        "Custom integrations",
+      ],
+      buttonText: "Upgrade to Pro",
+      isPopular: true,
+    },
+    {
+      id: "premium",
+      name: "Premium",
+      price: "200,000",
+      currency: "MMK",
+      description: "Enterprise-grade solution for large organizations",
+      features: [
+        "Everything in Pro",
+        "Unlimited storage",
+        "24/7 priority support",
+        "Dedicated account manager",
+        "Advanced security",
+        "SLA guarantee",
+        "Custom branding",
+        "White-label options",
+      ],
+      buttonText: "Contact Sales",
+      isPopular: false,
+    },
+  ];
+
+  const handlePlanSelect = (planId: string) => {
+    setSelectedPlan(planId);
+  };
+
+  const handleProceed = () => {
+    if (selectedPlan) {
+      router.push(`/register?plan=${selectedPlan}`);
+    }
+  };
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
       {/* Header Section */}
@@ -96,68 +193,58 @@ export default function PricingPage() {
       </div>
 
       {/* Pricing Cards */}
-      <div className="px-4 sm:px-6 lg:px-8 pb-24">
+      <div className="px-4 sm:px-6 lg:px-8 pb-12">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 lg:gap-6">
-            {/* Basic Plan */}
-            <PricingTier
-              name="Basic"
-              price="50,000"
-              currency="MMK"
-              description="Perfect for getting started with essential features"
-              features={[
-                "Up to 5 projects",
-                "Core features",
-                "Basic analytics",
-                "Email support",
-                "1GB storage",
-                "Community access",
-              ]}
-              buttonText="Start Free"
-            />
-
-            {/* Pro Plan - Recommended */}
-            <PricingTier
-              name="Pro"
-              price="100,000"
-              currency="MMK"
-              description="Ideal for growing teams and businesses"
-              features={[
-                "Unlimited projects",
-                "Advanced features",
-                "Real-time analytics",
-                "Priority email support",
-                "100GB storage",
-                "API access",
-                "Team collaboration",
-                "Custom integrations",
-              ]}
-              isPopular={true}
-              buttonText="Upgrade to Pro"
-            />
-
-            {/* Premium Plan */}
-            <PricingTier
-              name="Premium"
-              price="200,000"
-              currency="MMK"
-              description="Enterprise-grade solution for large organizations"
-              features={[
-                "Everything in Pro",
-                "Unlimited storage",
-                "24/7 priority support",
-                "Dedicated account manager",
-                "Advanced security",
-                "SLA guarantee",
-                "Custom branding",
-                "White-label options",
-              ]}
-              buttonText="Contact Sales"
-            />
+            {plans.map((plan) => (
+              <PricingTier
+                key={plan.id}
+                name={plan.name}
+                price={plan.price}
+                currency={plan.currency}
+                description={plan.description}
+                features={plan.features}
+                isPopular={plan.isPopular}
+                buttonText={plan.buttonText}
+                isSelected={selectedPlan === plan.id}
+                hasAnySelection={selectedPlan !== null}
+                onClick={() => handlePlanSelect(plan.id)}
+              />
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* FAQ Section */}
+      {/* Proceed Button */}
+      {selectedPlan && (
+        <div className="px-4 sm:px-6 lg:px-8 pb-12">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white border-2 border-cyan-600 rounded-lg p-6 shadow-lg">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                    Selected Plan: {plans.find((p) => p.id === selectedPlan)?.name}
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    {plans.find((p) => p.id === selectedPlan)?.price}{" "}
+                    {plans.find((p) => p.id === selectedPlan)?.currency} per month
+                  </p>
+                </div>
+                <Button
+                  size="lg"
+                  onClick={handleProceed}
+                  className="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold w-full sm:w-auto px-8"
+                >
+                  Continue to Registration →
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* FAQ Section */}
+      <div className="px-4 sm:px-6 lg:px-8 pb-24">
         <div className="max-w-3xl mx-auto mt-24">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
             Frequently Asked Questions
