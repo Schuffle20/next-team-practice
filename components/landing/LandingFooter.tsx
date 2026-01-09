@@ -4,14 +4,14 @@ import { ShoppingCart01Icon } from "@hugeicons/core-free-icons";
 
 const footerLinks = {
   product: [
-    { label: "Features", href: "/about" },
-    { label: "Pricing", href: "/about" },
-    { label: "Integrations", href: "/about" },
+    { label: "Features", href: "/features" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Integrations", href: "/integrations" },
   ],
   company: [
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
-    { label: "Blog", href: "/about" },
+    { label: "Blog", href: "/blog" },
   ],
   support: [
     { label: "Help Center", href: "/contact" },
