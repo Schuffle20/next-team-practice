@@ -113,20 +113,21 @@ export default function LoginPage() {
                   className={errors.password ? "border-red-500" : ""}
                 />
                 {errors.password && (
-                  <p className="text-sm text-red-500">{errors.password.message}</p>
+                  <p className="text-sm text-red-500">
+                    {errors.password.message}
+                  </p>
                 )}
               </div>
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-cyan-600 hover:bg-cyan-700 text-white disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? "Signing in..." : "Sign In"}
               </Button>
             </form>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
-
             <div className="text-sm text-center text-muted-foreground">
               Don&apos;t have an account?{" "}
               <Link
