@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,9 +17,24 @@ import { Checkbox } from "@/components/ui/checkbox"; // Run: pnpm dlx shadcn@lat
 
 export default function RegisterPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background p-4">
-      <Card className="w-full max-w-md shadow-xl border-t-4 border-t-cyan-600">
-        <CardHeader className="space-y-1 text-center">
+    <div className="min-h-screen flex">
+      {/* Left Side: Image */}
+      <div className="hidden md:flex md:w-1/2 bg-cyan-50 items-center justify-center p-4">
+        <div className="relative w-full max-w-md h-auto">
+          <Image
+            src="/login_register_image.png"
+            alt="Register visual"
+            width={500}
+            height={600}
+            className="object-contain w-full h-auto"
+            priority
+          />
+        </div>
+      </div>
+      {/* Right Side: Register Card */}
+      <div className="w-full md:w-1/2 flex items-center justify-center bg-slate-50/50 p-4">
+        <Card className="w-full max-w-md shadow-lg border-t-4 border-t-cyan-600">
+        <CardHeader className="space-y-1">
           <CardTitle className="text-3xl font-bold tracking-tight">
             Create an account
           </CardTitle>
@@ -99,7 +115,8 @@ export default function RegisterPage() {
             </Link>
           </div>
         </CardFooter>
-      </Card>
+        </Card>
+      </div>
     </div>
   );
 }
