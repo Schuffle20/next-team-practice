@@ -22,7 +22,7 @@ export function LandingNav() {
             <Link href="/login">
               <Button variant="outline">Sign In</Button>
             </Link>
-            <Link href="/register">
+            <Link href="/getstarted">
               <Button>Get Started</Button>
             </Link>
           </div>
