@@ -5,7 +5,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -73,7 +75,16 @@ const registerSchema = z
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
+const planNames: Record<string, string> = {
+  basic: "Basic",
+  pro: "Pro",
+  premium: "Premium",
+};
+
 export default function RegisterPage() {
+  const searchParams = useSearchParams();
+  const selectedPlan = searchParams.get("plan");
+
   const {
     register,
     handleSubmit,
@@ -95,6 +106,7 @@ export default function RegisterPage() {
   const onSubmit = async (data: RegisterFormData) => {
     // Handle form submission
     console.log("Form data:", data);
+    console.log("Selected plan:", selectedPlan);
     // Add your API call here
   };
   return (
@@ -122,6 +134,13 @@ export default function RegisterPage() {
             <CardDescription>
               Enter your information below to get started
             </CardDescription>
+            {selectedPlan && (
+              <div className="mt-4">
+                <Badge variant="secondary" className="text-sm">
+                  Selected Plan: {planNames[selectedPlan] || selectedPlan}
+                </Badge>
+              </div>
+            )}
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
