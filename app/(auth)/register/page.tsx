@@ -6,6 +6,7 @@ import * as z from "zod";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -81,7 +82,7 @@ const planNames: Record<string, string> = {
   premium: "Premium",
 };
 
-export default function RegisterPage() {
+function RegisterForm() {
   const searchParams = useSearchParams();
   const selectedPlan = searchParams.get("plan");
 
@@ -307,5 +308,38 @@ export default function RegisterPage() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex">
+          <div className="hidden md:flex md:w-1/2 bg-cyan-50 items-center justify-center p-4">
+            <div className="relative w-full max-w-md h-auto">
+              <Image
+                src="/login_register_new.png"
+                alt="Register visual"
+                width={500}
+                height={600}
+                className="object-contain w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 flex items-center justify-center bg-slate-50/50 p-4">
+            <div className="w-full max-w-md">
+              <div className="animate-pulse space-y-4">
+                <div className="h-8 bg-gray-200 rounded w-3/4"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <RegisterForm />
+    </Suspense>
   );
 }
