@@ -3,5 +3,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div id="dashboard-layout">{children}</div>;
+  return <div id="profile-layout">{children}</div>;
 }
