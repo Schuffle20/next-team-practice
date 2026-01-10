@@ -6,6 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tick02Icon, CheckmarkCircle01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const PricingTier = ({
   name,
@@ -57,7 +63,9 @@ const PricingTier = ({
       </div>
     )}
 
-    <div className={isSelected || (isPopular && !hasAnySelection) ? "pt-4" : ""}>
+    <div
+      className={isSelected || (isPopular && !hasAnySelection) ? "pt-4" : ""}
+    >
       <h3 className="text-xl font-semibold text-gray-900 mb-2">{name}</h3>
       <p className="text-gray-600 text-sm mb-6 leading-relaxed">
         {description}
@@ -223,11 +231,13 @@ export default function PricingPage() {
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                    Selected Plan: {plans.find((p) => p.id === selectedPlan)?.name}
+                    Selected Plan:{" "}
+                    {plans.find((p) => p.id === selectedPlan)?.name}
                   </h3>
                   <p className="text-sm text-gray-600">
                     {plans.find((p) => p.id === selectedPlan)?.price}{" "}
-                    {plans.find((p) => p.id === selectedPlan)?.currency} per month
+                    {plans.find((p) => p.id === selectedPlan)?.currency} per
+                    month
                   </p>
                 </div>
                 <Button
@@ -251,34 +261,47 @@ export default function PricingPage() {
           </h2>
 
           <div className="space-y-6">
-            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Can I change plans anytime?
-              </h3>
-              <p className="text-gray-600">
-                Yes, you can upgrade or downgrade your plan at any time. Changes
-                take effect at the next billing cycle.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Do you offer refunds?
-              </h3>
-              <p className="text-gray-600">
-                We offer a 30-day money-back guarantee if you&apos;re not
-                satisfied with your purchase.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                What payment methods do you accept?
-              </h3>
-              <p className="text-gray-600">
-                We accept all major credit cards, bank transfers, and digital
-                payment methods for your convenience.
-              </p>
+            <div className="bg-white p-6 rounded-lg  ">
+              <Accordion
+                type="single"
+                collapsible
+                className="w-full"
+                defaultValue="item-1"
+              >
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className=" text-base">
+                    Product Can I change plans anytime?
+                  </AccordionTrigger>
+                  <AccordionContent className="flex flex-col gap-4 text-balance  text-base">
+                    <p>
+                      Yes, you can upgrade or downgrade your plan at any time.
+                      Changes take effect at the next billing cycle.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                  <AccordionTrigger className=" text-base">
+                    Do you offer refunds?
+                  </AccordionTrigger>
+                  <AccordionContent className="flex flex-col gap-4 text-balance text-base">
+                    <p>
+                      We offer a 30-day money-back guarantee if you&apos;re not
+                      satisfied with your purchase.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-3">
+                  <AccordionTrigger className=" text-base">
+                    What payment methods do you accept?
+                  </AccordionTrigger>
+                  <AccordionContent className="flex flex-col gap-4 text-balance text-base">
+                    <p>
+                      We accept all major credit cards, bank transfers, and
+                      digital payment methods for your convenience.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           </div>
         </div>
