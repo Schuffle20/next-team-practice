@@ -7,7 +7,12 @@ import {
   SidebarGroupLabel,
   SidebarMenu,
 } from "./ui/sidebar";
-import { GridViewIcon, YoutubeIcon } from "@hugeicons/core-free-icons";
+import {
+  GridViewIcon,
+  PurseIcon,
+  ShoppingBasketCheckOut01Icon,
+  YoutubeIcon,
+} from "@hugeicons/core-free-icons";
 import FooterNavigate from "./sidebar/FooterNavigate";
 import LinkItem from "./sidebar/LinkItem";
 import HeaderSidebar from "./sidebar/Header";
@@ -30,6 +35,12 @@ function UserSidebar() {
                 icon={GridViewIcon}
                 href="/dashboard"
               />
+              <LinkItem
+                text="Products"
+                icon={ShoppingBasketCheckOut01Icon}
+                href="/products"
+              />
+              <LinkItem text="Sale" icon={PurseIcon} href="/sale" />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
