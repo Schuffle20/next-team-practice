@@ -4,22 +4,19 @@ import { Button } from "@/components/ui/button"
 
 const blogs = [{
     title: "Introducing POS Pro System",
-    description:
-      "Learn how POS Pro helps retail and restaurant businesses manage sales efficiently.",
+    description: "Learn how POS Pro helps retail and restaurant businesses manage sales efficiently.",
     tag: "Announcement",
     date: "Jan 10, 2026",
   },
   {
     title: "How POS Pro Improves Inventory Control",
-    description:
-      "Understand real-time inventory tracking and low-stock alerts in POS Pro.",
+    description: "Understand real-time inventory tracking and low-stock alerts in POS Pro.",
     tag: "Inventory",
     date: "Jan 6, 2026",
   },
   {
     title: "Secure Payments with POS Pro",
-    description:
-      "Explore supported payment methods and secure transaction handling.",
+    description: "Explore supported payment methods and secure transaction handling.",
     tag: "Payments",
     date: "Jan 2, 2026",
   },
