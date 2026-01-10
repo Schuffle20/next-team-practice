@@ -2,6 +2,8 @@
 
 const ROUTE_LABELS = {
   "/dashboard": "Dashboard",
+  "/products": "Products",
+  "/sale": "Sale",
   "/setting/profile": "Profile Setting",
   "/setting/password": "Password Setting",
   "/setting/appearance": "Appearance Setting",
