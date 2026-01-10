@@ -13,12 +13,13 @@ export default function AboutPage() {
         </Badge>
 
         <h1 className="mb-4 text-4xl font-bold tracking-tight">
-          Building meaningful digital experiences
+          Powering tea shops with a simple POS system
         </h1>
 
         <p className="mx-auto max-w-2xl text-muted-foreground">
-          We focus on creating simple, beautiful, and reliable products that
-          solve real problems and feel great to use.
+          We build an easy-to-use Point of Sale system designed especially for tea
+  shops and small restaurants — helping you manage orders, payments, and daily
+  operations with confidence.
         </p>
       </section>
 
@@ -31,9 +32,10 @@ export default function AboutPage() {
             <CardTitle>Our Mission</CardTitle>
           </CardHeader>
           <CardContent className="text-muted-foreground">
-            Our mission is to design and build digital products that are easy to
-            understand, accessible to everyone, and enjoyable to use. We
-            believe great software should feel effortless.
+            Our mission is to help tea shops and restaurants run smoothly by providing a
+  POS system that is fast, simple, and reliable. We focus on reducing manual
+  work, minimizing mistakes, and making daily operations easier for shop
+  owners and staff.
           </CardContent>
         </Card>
 
@@ -42,9 +44,10 @@ export default function AboutPage() {
             <CardTitle>Our Vision</CardTitle>
           </CardHeader>
           <CardContent className="text-muted-foreground">
-            We envision a future where technology empowers people without
-            overwhelming them — tools that blend naturally into everyday life
-            and help users focus on what truly matters.
+           We envision a future where every tea shop — from small street stalls to busy
+  cafés — can use modern technology without complexity. Our goal is to make
+  digital tools feel natural, affordable, and truly helpful for everyday
+  business.
           </CardContent>
         </Card>
       </section>
@@ -59,17 +62,18 @@ export default function AboutPage() {
               <CardTitle>Simplicity</CardTitle>
             </CardHeader>
             <CardContent className="text-muted-foreground">
-              We remove unnecessary complexity and focus on clarity in both
-              design and code.
+             Tea shops are busy places. Our POS system is designed to be easy to learn and
+  quick to use, even during peak hours.
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Quality</CardTitle>
+              <CardTitle>Reliability</CardTitle>
             </CardHeader>
             <CardContent className="text-muted-foreground">
-              From performance to typography, every detail matters to us.
+              We focus on stability and accuracy — from order management to daily sales
+  reports — so shop owners can trust the system every day.
             </CardContent>
           </Card>
 
@@ -78,8 +82,8 @@ export default function AboutPage() {
               <CardTitle>Consistency</CardTitle>
             </CardHeader>
             <CardContent className="text-muted-foreground">
-              A consistent experience builds trust and makes products feel
-              professional.
+               A consistent workflow helps staff work faster and reduces confusion. We make
+  sure the experience stays familiar across all devices and shifts.
             </CardContent>
           </Card>
         </div>
@@ -88,15 +92,15 @@ export default function AboutPage() {
       {/* Call to Action */}
       <section className="mt-20 text-center">
         <h2 className="mb-4 text-2xl font-semibold">
-          Want to work with us?
+          Ready to improve your tea shop operations?
         </h2>
 
         <p className="mb-6 text-muted-foreground">
-          We’re always open to new ideas, collaborations, and meaningful
-          projects.
+          Whether you run a small tea shop or a growing restaurant, our POS system is
+  here to support your daily business.
         </p>
 
-        <Button size="lg">Get in touch</Button>
+        <Button size="lg">Contact Us</Button>
       </section>
     </main>
   )
