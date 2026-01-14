@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
 const blogs = [{
-    title: "Introducing POS Pro System",
+    title: "Introducing POS Pro System for Business",
     description: "Learn how POS Pro helps retail and restaurant businesses manage sales efficiently.",
     tag: "Announcement",
     date: "Jan 10, 2026",
