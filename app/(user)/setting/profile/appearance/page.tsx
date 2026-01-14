@@ -14,15 +14,7 @@ import {
 } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import SidebarTriggerAndLabel from "@/components/sidebar/SidebarTriggerAndLabel";
-import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  SunIcon,
-  MoonIcon,
-  MonitorIcon,
-  Globe01Icon,
-  FontSizeIcon,
-  Layout01Icon,
-} from "@hugeicons/core-free-icons";
+import { Sun, Moon, Monitor, Globe, Layout } from "lucide-react";
 
 type Theme = "light" | "dark" | "system";
 type Language = "en" | "es" | "fr" | "de" | "zh";
@@ -65,7 +57,7 @@ export default function AppearancePage() {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <HugeiconsIcon icon={MonitorIcon} className="size-5 text-cyan-600" />
+              <Monitor className="size-5 text-cyan-600" />
               <CardTitle>Theme</CardTitle>
             </div>
             <CardDescription>
@@ -81,7 +73,7 @@ export default function AppearancePage() {
                   }`}
                 >
                   <RadioGroupItem value="light" id="light" className="sr-only" />
-                  <HugeiconsIcon icon={SunIcon} className="size-8 mb-3 text-cyan-600" />
+                  <Sun className="size-8 mb-3 text-cyan-600" />
                   <span className="font-medium">Light</span>
                   <span className="text-sm text-muted-foreground text-center mt-1">
                     Clean and bright interface
@@ -94,7 +86,7 @@ export default function AppearancePage() {
                   }`}
                 >
                   <RadioGroupItem value="dark" id="dark" className="sr-only" />
-                  <HugeiconsIcon icon={MoonIcon} className="size-8 mb-3 text-cyan-600" />
+                  <Moon className="size-8 mb-3 text-cyan-600" />
                   <span className="font-medium">Dark</span>
                   <span className="text-sm text-muted-foreground text-center mt-1">
                     Easy on the eyes at night
@@ -107,7 +99,7 @@ export default function AppearancePage() {
                   }`}
                 >
                   <RadioGroupItem value="system" id="system" className="sr-only" />
-                  <HugeiconsIcon icon={MonitorIcon} className="size-8 mb-3 text-cyan-600" />
+                  <Monitor className="size-8 mb-3 text-cyan-600" />
                   <span className="font-medium">System</span>
                   <span className="text-sm text-muted-foreground text-center mt-1">
                     Match your device settings
@@ -122,7 +114,7 @@ export default function AppearancePage() {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <HugeiconsIcon icon={Globe01Icon} className="size-5 text-cyan-600" />
+              <Globe className="size-5 text-cyan-600" />
               <CardTitle>Language & Region</CardTitle>
             </div>
             <CardDescription>
@@ -155,7 +147,7 @@ export default function AppearancePage() {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-2">
-              <HugeiconsIcon icon={Layout01Icon} className="size-5 text-cyan-600" />
+              <Layout className="size-5 text-cyan-600" />
               <CardTitle>Display Settings</CardTitle>
             </div>
             <CardDescription>

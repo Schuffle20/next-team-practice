@@ -10,8 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import SidebarTriggerAndLabel from "@/components/sidebar/SidebarTriggerAndLabel";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { EyeIcon, EyeClosedIcon } from "@hugeicons/core-free-icons";
+import { Eye, EyeOff } from "lucide-react";
 
 // Validation schema
 const passwordSchema = z
@@ -108,10 +107,11 @@ export default function PasswordPage() {
                     onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                   >
-                    <HugeiconsIcon
-                      icon={showCurrentPassword ? EyeClosedIcon : EyeIcon}
-                      className="size-4"
-                    />
+                    {showCurrentPassword ? (
+                      <EyeOff className="size-4" />
+                    ) : (
+                      <Eye className="size-4" />
+                    )}
                   </button>
                 </div>
                 {errors.currentPassword && (
@@ -137,10 +137,11 @@ export default function PasswordPage() {
                     onClick={() => setShowNewPassword(!showNewPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                   >
-                    <HugeiconsIcon
-                      icon={showNewPassword ? EyeClosedIcon : EyeIcon}
-                      className="size-4"
-                    />
+                    {showNewPassword ? (
+                      <EyeOff className="size-4" />
+                    ) : (
+                      <Eye className="size-4" />
+                    )}
                   </button>
                 </div>
                 {errors.newPassword && (
@@ -174,10 +175,11 @@ export default function PasswordPage() {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                   >
-                    <HugeiconsIcon
-                      icon={showConfirmPassword ? EyeClosedIcon : EyeIcon}
-                      className="size-4"
-                    />
+                    {showConfirmPassword ? (
+                      <EyeOff className="size-4" />
+                    ) : (
+                      <Eye className="size-4" />
+                    )}
                   </button>
                 </div>
                 {errors.confirmPassword && (
