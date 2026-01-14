@@ -1,9 +1,9 @@
-import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react";
 import { ComponentProps } from "react";
+import type { LucideIcon } from "lucide-react";
 import { useSidebar } from "../ui/sidebar";
 import { twMerge } from "tailwind-merge";
 interface FooterLinkItemProps extends ComponentProps<"a"> {
-  icon: IconSvgElement;
+  icon: LucideIcon;
   text: string;
   href: string;
   className?: string;
@@ -12,7 +12,7 @@ const baseStyle = "flex gap-2 items-center w-full";
 
 // i use "a" instead of nextjs/link component because nextjs link component stop the event , so it can't close it self to the dropdown
 function FooterLinkItem({
-  icon,
+  icon: Icon,
   text,
   href,
   className,
@@ -33,7 +33,7 @@ function FooterLinkItem({
       onClick={closeSidebarClick}
     >
       <div className="size-10 flex items-center  justify-center">
-        <HugeiconsIcon className=" size-6" icon={icon} />
+        <Icon className=" size-6" />
       </div>
 
       <div className=" text-base">{text}</div>

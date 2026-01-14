@@ -5,8 +5,9 @@ const ROUTE_LABELS = {
   "/products": "Products",
   "/sale": "Sale",
   "/setting/profile": "Profile Setting",
-  "/setting/password": "Password Setting",
-  "/setting/appearance": "Appearance Setting",
+  "/setting/profile/change-password": "Change Password",
+  "/setting/profile/two-factor": "Two Factor",
+  "/setting/profile/appearance": "Appearance",
 } as const;
 export type UserRoute = keyof typeof ROUTE_LABELS;
 

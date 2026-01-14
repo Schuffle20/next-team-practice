@@ -5,14 +5,13 @@ import {
   SidebarGroupContent,
   SidebarMenu,
 } from "../ui/sidebar";
-import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  BookOpen01Icon,
-  Folder01Icon,
-  Logout05Icon,
-  Setting07Icon,
-  UnfoldMoreIcon,
-} from "@hugeicons/core-free-icons";
+  BookOpen,
+  Folder,
+  LogOut,
+  Settings,
+  ChevronDown,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,13 +32,13 @@ function FooterNavigate() {
             <SidebarMenu>
               <LinkItem
                 text="Repository"
-                icon={Folder01Icon}
+                icon={Folder}
                 href="#"
                 className="font-normal"
               />
               <LinkItem
                 text="Documentation"
-                icon={BookOpen01Icon}
+                icon={BookOpen}
                 href="#"
                 className="font-normal"
               />
@@ -60,8 +59,7 @@ function FooterNavigate() {
               <span className="group-data-[collapsible=icon]:hidden">Aung</span>
             </div>
 
-            <HugeiconsIcon
-              icon={UnfoldMoreIcon}
+            <ChevronDown
               className="group-data-[collapsible=icon]:hidden size-6!"
             />
           </Button>
@@ -82,14 +80,14 @@ function FooterNavigate() {
           <DropdownMenuItem className=" h-12" asChild>
             <FooterLinkItem
               text="Settings"
-              icon={Setting07Icon}
+              icon={Settings}
               href="/setting/profile"
             />
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem className=" h-12" asChild>
             {/* [todo]: need to change href when api are avai */}
-            <FooterLinkItem text="Logout" icon={Logout05Icon} href="#" />
+            <FooterLinkItem text="Logout" icon={LogOut} href="#" />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

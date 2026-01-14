@@ -8,11 +8,11 @@ import {
   SidebarMenu,
 } from "./ui/sidebar";
 import {
-  GridViewIcon,
-  PurseIcon,
-  ShoppingBasketCheckOut01Icon,
-  YoutubeIcon,
-} from "@hugeicons/core-free-icons";
+  LayoutDashboard,
+  Wallet,
+  ShoppingCart,
+  Youtube,
+} from "lucide-react";
 import FooterNavigate from "./sidebar/FooterNavigate";
 import LinkItem from "./sidebar/LinkItem";
 import HeaderSidebar from "./sidebar/Header";
@@ -23,7 +23,7 @@ function UserSidebar() {
       <HeaderSidebar
         text="Laravel Starter Kit"
         href="/dashboard"
-        icon={YoutubeIcon}
+        icon={Youtube}
       />
       <SidebarContent>
         <SidebarGroup>
@@ -32,15 +32,15 @@ function UserSidebar() {
             <SidebarMenu>
               <LinkItem
                 text="Dashboard"
-                icon={GridViewIcon}
+                icon={LayoutDashboard}
                 href="/dashboard"
               />
               <LinkItem
                 text="Products"
-                icon={ShoppingBasketCheckOut01Icon}
+                icon={ShoppingCart}
                 href="/products"
               />
-              <LinkItem text="Sale" icon={PurseIcon} href="/sale" />
+              <LinkItem text="Sale" icon={Wallet} href="/sale" />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
