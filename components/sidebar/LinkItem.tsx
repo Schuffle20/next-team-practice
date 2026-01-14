@@ -1,19 +1,19 @@
 import Link from "next/link";
 import { SidebarMenuButton, SidebarMenuItem, useSidebar } from "../ui/sidebar";
-import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
 import { ComponentProps } from "react";
+import type { LucideIcon } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 
 // link item for sidebar
 interface LinkItemProps extends ComponentProps<"a"> {
-  icon: IconSvgElement;
+  icon: LucideIcon;
   text: string;
   className?: string;
   href: string;
 }
 const baseStyle =
   " flex items-center font-medium  group-data-[collapsible=icon]:justify-center text-center";
-function LinkItem({ icon, text, href, className, ...props }: LinkItemProps) {
+function LinkItem({ icon: Icon, text, href, className, ...props }: LinkItemProps) {
   // to close sidebar itself in smaller device which trigger the modal style float sidebar
   const { openMobile, setOpenMobile } = useSidebar();
   function closeSidebarClick() {
@@ -30,7 +30,7 @@ function LinkItem({ icon, text, href, className, ...props }: LinkItemProps) {
           {...props}
           onClick={closeSidebarClick}
         >
-          <HugeiconsIcon icon={icon} className=" size-6! " />
+          <Icon className=" size-6! " />
           <span className=" text-base  group-data-[collapsible=icon]:hidden">
             {text}
           </span>
